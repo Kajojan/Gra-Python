@@ -1,0 +1,2 @@
+def pangram(lista):
+    alfabt=[]:
