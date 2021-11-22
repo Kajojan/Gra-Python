@@ -9,5 +9,5 @@ def sort(lista):
         return False
 
 
-lista=[1,2,3,4,5,1]
+lista=[1,2,3,4,5,10]
 print(sort(lista))
