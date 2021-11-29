@@ -22,5 +22,5 @@ def ostatni(lista,x):
 
 
 
-lista=[1,2,3,4,4,4,4,5,6,7]
-print(ostatni(lista,4))
+lista=[1,2,3,4,4,4,4,5,6,7,7,7,7,8]
+print(ostatni(lista,7))
