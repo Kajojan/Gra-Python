@@ -6,24 +6,29 @@ def max(lista):
             maks=lista[n]
         n+=1
     return maks
-
+lista=[2,3,4,1,8,9,5]
+print(max(lista))
 def sort_maks(lista):
-    n=0
     lista2=lista
-    while n < len(lista)-1:
+
+    k=0
+    n=0
+    while n < len(lista):
         j=0
-        while j < len(lista)-j-1:
-            if lista[j]==max(lista):
-                lista2[len(lista2) - j] = max(lista2[0:len(lista2) - j])
-                tmp=lista2[len(lista2)-j]
-                lista2[j]=tmp
-                print(max(lista), lista[j])
+        while j < len(lista):
+            lista2=lista[0:len(lista)-k]
+
+            if lista[j]==max(lista2):
+                tmp = lista[len(lista) - 1-k]
+                lista[len(lista)-1-k] = max(lista2)
+                lista[j]=tmp
+
+                k+=1
             j+=1
         n+=1
+    return lista
 
-    return lista2
-
-lista=[2,3,4,1,8,9,5]
+lista=[2,3,3,9,4,1,8,9,5]
 print(sort_maks(lista))
-print(max(lista))
+
 
