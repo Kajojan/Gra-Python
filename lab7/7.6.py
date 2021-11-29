@@ -28,5 +28,5 @@ def liczba(lista,x):
         if lista[s]>x:
             ostat=s-1
 
-lista=[1,2,3,7,8,9,10,10,11]
-print(liczba(lista,10))
+lista=[1,2,3,7,8,9,10,11]
+print(liczba(lista,11))
