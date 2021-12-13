@@ -1,4 +1,4 @@
-modele={"Audi":"rs7", "Audi":"a3", "Toyota":"Yaris", "Toyota":"Auris"}
-rok_produkcji={"Audi":"2017", "Audi":"2002", "Toyota":"2004", "Toyota":"2010"}
-print(modele)
-print(rok_produkcji)
+marki={1:"Audi", 2:"Toyota", 3:"Nissan"}
+model={1:"rs7", 2:"Yaris", 3:"Note"}
+rok={1:2017,2:2004,3:2012}
+print(marki[1], model[1], rok[1])
