@@ -1,10 +1,15 @@
 import random
 def kolo():
-    kolo1={1:100, 2:250, 3:500, 4:550, 5:800, 6:1000, 7:3000, 8:"500?", 9:"Nagroda", 10:"bankrut"}
-    x = random.randrange(10)
+    kolo1={1:100, 2:250, 3:500, 4:550, 5:800, 6:1000, 7:3000, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!"}
+    x = random.randrange(1,11)
     for i in kolo1.keys():
         if i == x:
             return kolo1[i]
+def znacznik():
+    znacznik=[]
+    for i in range(0,3):
+        znacznik.append(kolo())
+    return znacznik
 
 
 
