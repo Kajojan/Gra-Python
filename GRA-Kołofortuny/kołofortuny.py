@@ -29,8 +29,6 @@ def losowanie():
 def haslo(x):
     with open('kategorie.csv', encoding='utf-8') as csvfile:
         kategorie = csv.reader(csvfile, delimiter=';')
-
-
         for row in kategorie:
             if row[0] == x:
                 k = random.randrange(1,91)
@@ -70,17 +68,25 @@ def literowanie(litera, nagroda,kasa):
         if has[i] == litera:
             wynik[i] = litera
             ile+=1
-    if ile != 0:
-        kasa=kasa+(ile*nagroda)
     return wynik
 
-def kasowanie(litera,wynik,kasa):
+def kasowanie(nagroda,wynik,kasa):
     ile=0
+<<<<<<< HEAD
     for i in range(0,len(wynik)):
         if wynik[i] == litera:
             ile+=1
     if ile != 0:
         kasa=kasa+(ile*nagroda)
+=======
+    if nagroda != "BANKRUT!!!":
+        for i in range(0,len(wynik)):
+            if wynik[i] !=" _ ":
+                ile+=1
+            if ile != 0:
+                kasa=kasa+(ile*nagroda)
+
+>>>>>>> cb8ccf0 (zad)
     return kasa
 
 def krecenie(k,życia,kasa):
@@ -130,6 +136,7 @@ spółgłoski=['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 alfabet=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż','a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 
 
+<<<<<<< HEAD
 
 print("Witamy w kole fortuny!!!")
 print("Przedstawmy naszego gościa")
@@ -275,11 +282,79 @@ if start=="Tak":
                         print("Kurcze szkoda takiej fury, ale no cóż i tak wygrałeś: ", kasa)
                     else:
                         print("Mówi się trudno, może nastepnym razem, ale i tak wygrałeś: ", kasa)
+=======
+# kategoria=losowanie()
+# has=haslo(kategoria)
+#
+# nagroda=500
+# print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
+# print(odgadywanie(has))
+# print("Czas odgadnąć literę")
+# litera=input("podaj literę")
+# wynik=literowanie(litera,nagroda,kasa)
+# print(wynik)
+#
+# litera=input("podaj literę")
+# wynik+=literowanie(litera,nagroda,kasa)
+# print(wynik)
+# print(kasa)
+>>>>>>> cb8ccf0 (zad)
 
 
 
 
 
+<<<<<<< HEAD
+=======
+print("Witamy w kole fortuny!!!")
+print("Przedstawmy naszego gościa")
+imie=input("Jak sie nazywasz?")
+print("Witaj", imie)
+print("Już tłumacze ci zasady")
+print("Na kole znajdują się: pieniadze, nagroda, bankrut, albo 500?. Jesli to wulosujesz stoisz przed wyborem, albo  500 zł albo odkrywasz karte i masz 50/50 na bankruta albo 3500zł ")
+print("Po zakręceniu kołem podajesz spółgłoske, tyle ile bedzie ich w haśle, tyle razy dostaniesz wylosowane pieniadze")
+print("Jeśli nie zgadniesz, lub wylosujesz bankryta  przegrywasz wszystko")
+print("W każdj chwili możesz zgadywać hasło, pamietaj aby być bardzo dokładnym w podawaniu hasła ")
+print("Zaczynamy")
+start=input("Tak czy Nie ?")
+if start=="Tak":
+    print("losowanie hasła.....")
+    kategoria=losowanie()
+    has=haslo(kategoria)
+    print("Kategoria hasła to:", kategoria)
+    print("Dla ułatwienia wszystkie hasła są z małych liter")
+    k=input("napisz 'kolo' aby zakręcisz kołem")
+    if k == "kolo":
+        nagroda=kolo()
+        if nagroda!="BANKRUT!!!":
+            print("wylosowałeś: ", nagroda)
+            if nagroda == "Nagroda":
+                print("Jeśli zgadniesz litera dostaniesz: ", nagrody())
+            elif nagroda =="500?":
+                print("masz dwie opcje: 1.zostajesz przy 500  czy 2.odsłaniasz karte i ryzykujesz 50/50 3500 albo bankrut")
+                wybor=input("1 czy 2 ?")
+                if wybor == "1":
+                    nagroda=500
+                elif wybor == "2":
+                    druga=odslanianie()
+                    print("Po drugiej strona jest...",druga)
+                    if druga=="BANKRUT!!!":
+                        kasa=0
+                    else:
+                        nagroda=druga
+            print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
+            print(odgadywanie(has))
+            print("Czas odgadnąć literę")
+            litera=input("podaj literę")
+            print(literowanie(litera,nagroda,kasa))
+        else:
+            print("Wylosowałeś bankruta, zakręć kołem jeszcze raz")
+
+
+
+
+
+>>>>>>> cb8ccf0 (zad)
 
 
 
