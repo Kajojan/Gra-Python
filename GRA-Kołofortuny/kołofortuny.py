@@ -1,7 +1,4 @@
-import random
-import csv
-
-
+from funkcje import *
 global has
 global wynik
 global kasa
@@ -9,56 +6,9 @@ global życia
 kasa=0
 życia=10
 wynik=[]
-def kolo():
-    kolo1={1:100, 2:200, 3:250, 4:400, 5:500, 6:1000, 7:3000, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!", 11:550, 12:800, 13:50, 14:100, 15:200}
-    x = random.randrange(1,16)
-    for i in kolo1.keys():
-        if i == x:
-            return kolo1[i]
-def znacznik():
-    znacznik=[]
-    for i in range(0,3):
-        znacznik.append(kolo())
-    return znacznik
-
-def losowanie():
-    kategorie=["Znani Polscy Aktorzy", "Filmy", "Seriale", "Polskie przysłowia", "Państwa"]
-    x = random.choice(kategorie)
-    return x
-
-def haslo(x):
-    with open('kategorie.csv', encoding='utf-8') as csvfile:
-        kategorie = csv.reader(csvfile, delimiter=';')
-        for row in kategorie:
-            if row[0] == x:
-                k = random.randrange(1,91)
-                haslo=row[k]
-                return(haslo)
-def nagrody():
-    nagro={1:"Garnki kuchenne", 2:"Wyjazd na Mazury", 3:"Zestaw porcelany", 4:"Zestaw zegarków", 5:"Wyjazd na Malediwy", 6:"Piątke od prowadzącego"}
-    x = random.randrange(1,7)
-    for i in nagro.keys():
-        if i == x:
-            return nagro[i]
-
-def odslanianie():
-    x=random.randrange(1,3)
-    if x==1:
-        return 3500
-    else:
-        return "BANKRUT!!!"
-def odgadywanie(has):
-    odp=[]
-    for i in has:
-        odp.append(i)
-    for i in range(len(has)):
-        for j in alfabet:
-            if odp[i]==j:
-                odp[i]=" _ "
-            elif odp[i]==" ":
-                odp[i]="    "
 
 
+<<<<<<< HEAD
     return odp
 
 def literowanie(litera, nagroda,kasa):
@@ -134,6 +84,8 @@ def finalowe():
 samogłoski=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż']
 spółgłoski=['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 alfabet=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż','a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
+=======
+>>>>>>> 68100df (zad)
 
 
 <<<<<<< HEAD
@@ -157,45 +109,15 @@ if start=="Tak":
     print("Kategoria hasła to:", kategoria)
     print("Dla ułatwienia wszystkie hasła są z małych liter")
     k=input("napisz 'kolo' aby zakręcisz kołem")
-    nagroda=krecenie(k,życia,kasa)
-
+    kolo2(k)
+    nagroda=krecenie(życia)
+    bankrut(nagroda,życia)
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
-    sp=0
-    sp2 = 0
-    for i in has:
-        for j in samogłoski:
-            if i == j:
-                sp += 1
+    czy=odgadywaniehasła(kasa,has,wynik,życia,nagroda)
 
-    while sp !=sp2:
-        ile=0
-        litera=input("Podaj spółgłoskę")
-        for j in samogłoski:
-            if j == litera:
-                for i in range(0, len(has)):
-                    if litera == wynik[i]:
-                        break
-                    if has[i] == litera:
-                        wynik[i] = litera
-                        sp2+=1
-                        ile+=1
-                if ile !=0:
-                    kasa+=ile*nagroda
-                    print("Brawo Zgadłeś zgarnałeś: ", ile*nagroda,  "  aktualny stan twojej wygranej: ", kasa)
-                    print(wynik)
-                    k = input("Napisz 'kolo' aby zakręcisz kołem")
-                    nagroda=krecenie(k, życia, kasa)
-                if ile==0:
-                    życia-=1
-                    print("Nie ma takiej literki lub już ją podałeś, tracisz jedno życie zostało ci: ",życia, " zakreć kołem jeszcze raz, aby grać dalej")
-                    print(wynik)
-                    k = input("Napisz 'kolo' aby zakręcisz kołem")
-                    nagroda=krecenie(k,życia,kasa)
-    else:
-        print("Prosze o podanie spółgłoski")
-        print(wynik)
-    if sp==sp2:
+
+    if czy==True:
         print("Skończyły się spółgłoski")
         print("Czas na odggadnięcie hasła")
         print("Możesz zgadnąć lub kupić samogłoske za 200")
@@ -204,6 +126,8 @@ if start=="Tak":
             ile2=0
             samogłoska=input("Podaj samogłoskę")
             kasa-=200
+            if kasa<0:
+                kasa=0
             for i in range(0, len(has)):
                 if samogłoska== wynik[i]:
                     break
@@ -282,6 +206,7 @@ if start=="Tak":
                         print("Kurcze szkoda takiej fury, ale no cóż i tak wygrałeś: ", kasa)
                     else:
                         print("Mówi się trudno, może nastepnym razem, ale i tak wygrałeś: ", kasa)
+<<<<<<< HEAD
 =======
 # kategoria=losowanie()
 # has=haslo(kategoria)
@@ -299,11 +224,17 @@ if start=="Tak":
 # print(wynik)
 # print(kasa)
 >>>>>>> cb8ccf0 (zad)
+=======
+
+
+
+>>>>>>> 68100df (zad)
 
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 print("Witamy w kole fortuny!!!")
@@ -355,6 +286,11 @@ if start=="Tak":
 
 
 >>>>>>> cb8ccf0 (zad)
+=======
+
+
+
+>>>>>>> 68100df (zad)
 
 
 
