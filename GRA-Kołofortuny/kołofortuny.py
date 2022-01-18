@@ -104,7 +104,7 @@ start=input("Tak czy Nie ?")
 if start=="Tak":
     print("losowanie hasła.....")
     kategoria=losowanie()
-    has=haslo(kategoria)
+    has="Ida"
     wynik = odgadywanie(has)
     print("Kategoria hasła to:", kategoria)
     print("Dla ułatwienia wszystkie hasła są z małych liter")
@@ -126,7 +126,7 @@ if start=="Tak":
             ile2=0
             samogłoska=input("Podaj samogłoskę")
             kasa-=200
-            if kasa<0:
+            if kasa<=0:
                 kasa=0
             for i in range(0, len(has)):
                 if samogłoska== wynik[i]:
@@ -153,16 +153,16 @@ if start=="Tak":
                 print("Dostaniesz 3 spółgłoski(d,r,s) + 1 samogłoske(i)")
                 print("Natomiast ty wybierzesz kolejne 3 spółgłoski i jedną samogłoskę")
                 samogło1=input("twoja pierwsza spółgłoska")
-                while czy_sp(samogło1) == "True":
+                while czy_sp(samogło1) != True:
                     samogło1 = input("Podaj spółgłoskę")
                 samogło2 = input("twoja druga spółgłoska")
-                while czy_sp(samogło2) == "True":
+                while czy_sp(samogło2) != True:
                     samogło2 = input("Podaj spółgłoskę")
                 samogło3 = input("twoja trzecia spółgłoska")
-                while czy_sp(samogło3) == "True":
+                while czy_sp(samogło3) != True:
                     samogło3 = input("Podaj spółgłoske")
                 samo = input("A teraz samogłoska")
-                while czy_sa(samo) == "True":
+                while czy_sa(samo) != True:
                         samo = input("Podaj samogłoskę")
                 kategoria2 = losowanie()
                 print("kategoria rundy finałowej:", kategoria2)

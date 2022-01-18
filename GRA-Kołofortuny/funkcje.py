@@ -97,6 +97,7 @@ def ngro(nagroda,życia):
 
 def czy_sp(litera):
     for i in samogłoski:
+
         if i == litera:
             return True
 
