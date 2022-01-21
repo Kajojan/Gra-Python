@@ -5,8 +5,8 @@ spółgłoski=['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 alfabet=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż','a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 
 def kolo():
-    kolo1={1:100, 2:200, 3:250, 4:400, 5:500, 6:1000, 7:3000, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!", 11:550, 12:800, 13:50, 14:100, 15:200, 16:100, 17:200, 18:1000}
-    x = random.randrange(1,18)
+    kolo1={1:100, 2:200, 3:250, 4:400, 5:500, 6:550, 7:1000, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!", 11:3000, 12:800, 13:50, 14:100, 15:200, 16:100, 17:200, 18:1000, 19:100,20:2000}
+    x = random.randrange(1,21)
     for i in kolo1.keys():
         if i == x:
             return kolo1[i]
@@ -71,7 +71,7 @@ def kasowanie(nagroda,wynik,kasa):
 def krecenie(życia):
     nagroda = kolo()
     print("wylosowałeś: ", nagroda)
-    ngro(nagroda,życia)
+    nagroda=ngro(nagroda,życia)
     return nagroda
 def ngro(nagroda,życia):
     if nagroda == "BANKRUT!!!":
@@ -115,8 +115,11 @@ def finalowe():
             return nagrod[i]
 def bankrut(nagroda,życia):
     if nagroda=="BANKRUT!!!":
-        while nagroda == "BANKRUT!!!":
-            nagroda = krecenie(życia)
+        życia = życia - 1
+        print("Wylosowałeś bankruta, zostalo ci", życia,"żyć ")
+        k = input("Zakreć kołem jeszcze raz: ")
+        kolo2(k)
+        nagroda = krecenie(życia)
 def kolo2(k):
     while k != "kolo":
         k = input("Napisałeś źle kolo")
@@ -140,9 +143,9 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                         wynik[i] = litera
                         sp2+=1
                         ile+=1
+                if ile !=0:
+                    kasa += ile * nagroda
                 if ile !=0 and sp !=sp2:
-
-                    kasa+=ile*nagroda
                     print("Brawo Zgadłeś zgarnałeś: ", ile*nagroda,  "  aktualny stan twojej wygranej: ", kasa)
                     print(wynik)
                     k = input("Napisz 'kolo' aby zakręcisz kołem")

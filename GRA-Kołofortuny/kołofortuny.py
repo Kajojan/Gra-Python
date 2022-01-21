@@ -101,6 +101,9 @@ print("Jeśli nie zgadniesz, lub wylosujesz bankryta  przegrywasz wszystko")
 print("W każdj chwili możesz zgadywać hasło, pamietaj aby być bardzo dokładnym w podawaniu hasła ")
 print("Zaczynamy")
 start=input("Tak czy Nie ?")
+while start != "Tak" and start != "Nie":
+    start=input("Widać, ze nie czytałeś tego co napisalem. Napisz uwzdlędniajac wielkie litery: ")
+
 if start=="Tak":
     print("losowanie hasła.....")
     kategoria=losowanie()
@@ -111,6 +114,7 @@ if start=="Tak":
     k=input("napisz 'kolo' aby zakręcisz kołem")
     kolo2(k)
     nagroda=krecenie(życia)
+    print(nagroda)
     bankrut(nagroda,życia)
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
@@ -118,10 +122,13 @@ if start=="Tak":
 
 
     if czy==True:
+        print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa)
         print("Skończyły się spółgłoski")
         print("Czas na odggadnięcie hasła")
         print("Możesz zgadnąć lub kupić samogłoske za 200")
         k = input("napisz kup lub haslo")
+        while k != "kup" and k != "haslo":
+            k=input("Napisałes coś źle. Napisz 'kup' albo 'haslo': ")
         while k != "haslo":
             ile2=0
             samogłoska=input("Podaj samogłoskę")
@@ -140,6 +147,8 @@ if start=="Tak":
             else:
                 print("Już podałeś tą samogłoskę lub nie ma jej w haśle")
             k = input("napisz kup lub haslo")
+            while k != "kup" and k != "haslo":
+                k = input("Napisałes coś źle. Napisz 'kup' albo 'haslo': ")
         if k=="haslo":
             print("Masz jedną próbę , także odpowiedz bardzo szczegółowo")
             hasl=input("odpowiedź: ")
@@ -231,7 +240,8 @@ if start=="Tak":
 >>>>>>> 68100df (zad)
 
 
-
+elif start=="Nie":
+    print("Do widzenia")
 
 
 <<<<<<< HEAD
