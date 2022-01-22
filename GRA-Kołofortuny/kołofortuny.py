@@ -1,10 +1,12 @@
 from funkcje import *
+import time
+import threading
 global has
 global wynik
 global kasa
 global życia
 kasa=0
-życia=1
+życia=10
 wynik=[]
 
 
@@ -95,10 +97,14 @@ print("Przedstawmy naszego gościa")
 imie=input("Jak sie nazywasz?")
 print("Witaj", imie)
 print("Już tłumacze ci zasady")
-print("Na kole znajdują się: pieniadze, nagroda, bankrut, albo 500?. Jesli to wulosujesz stoisz przed wyborem, albo  500 zł albo odkrywasz karte i masz 50/50 na bankruta albo 3500zł ")
+print("Na kole znajdują się: pieniadze, nagroda, bankrut, albo 500?. ")
+time.sleep(5)
 print("Po zakręceniu kołem podajesz spółgłoske, tyle ile bedzie ich w haśle, tyle razy dostaniesz wylosowane pieniadze")
-print("Jeśli nie zgadniesz, lub wylosujesz bankryta  przegrywasz wszystko")
-print("W każdj chwili możesz zgadywać hasło, pamietaj aby być bardzo dokładnym w podawaniu hasła ")
+time.sleep(3)
+print("Jeśli nie zgadniesz, lub wylosujesz bankryta  tracisz życie, na start masz ich 10")
+time.sleep(3)
+print("Pamietaj aby być bardzo dokładnym w podawaniu hasła ")
+time.sleep(3)
 print("Zaczynamy")
 start=input("Tak czy Nie ?")
 while start != "Tak" and start != "Nie":
@@ -106,8 +112,9 @@ while start != "Tak" and start != "Nie":
 
 if start=="Tak":
     print("losowanie hasła.....")
+    time.sleep(2)
     kategoria=losowanie()
-    has="Idak"
+    has="ida"        #haslo(kategoria)
     wynik = odgadywanie(has)
     print("Kategoria hasła to:", kategoria)
     print("Dla ułatwienia wszystkie hasła są z małych liter")
@@ -115,7 +122,7 @@ if start=="Tak":
     kolo2(k)
     nagroda=krecenie(życia)
     print(nagroda)
-    bankrut(nagroda,życia)
+    bankrut(nagroda,życia,kasa,has)
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
     kasa,życia=odgadywaniehasła(kasa,has,wynik,życia,nagroda)
@@ -123,9 +130,12 @@ if start=="Tak":
 
 
     if True:
-        print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa,życia)
+        print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa)
+        time.sleep(3)
         print("Skończyły się spółgłoski")
+        time.sleep(3)
         print("Czas na odgadnięcie hasła")
+        time.sleep(3)
         print("Możesz zgadnąć lub kupić samogłoske za 200")
         k = input("napisz kup lub haslo")
         while k != "kup" and k != "haslo":
@@ -156,11 +166,17 @@ if start=="Tak":
             print(has)
             if hasl==has:
                 print("Brawo udało ci się odganąć hasło")
+                time.sleep(3)
                 print("Runda Finałowa")
-                print("Bedziesz musiał w czasie 1 minuty odgadnać hasło")
-                print("Najpierw zakręćmy kołem finałowym")
-
+                time.sleep(2)
+                print("Bedziesz musiał w czasie 1,5 minuty odgadnać hasło")
+                time.sleep(2)
+                k=input("Najpierw zakręćmy kołem finałowym")
+                kolo2(k)
+                print("Wylosowałeś koperte, jak odgadniesz hasło zobaczysz co jest w srodku")
+                time.sleep(2)
                 print("Dostaniesz 3 spółgłoski(d,r,s) + 1 samogłoske(i)")
+                time.sleep(2)
                 print("Natomiast ty wybierzesz kolejne 3 spółgłoski i jedną samogłoskę")
                 samogło1=input("twoja pierwsza spółgłoska")
                 while czy_sp(samogło1) != True:
@@ -196,12 +212,20 @@ if start=="Tak":
                     if has2[i] == "i":
                         wynik2[i] = "i"
                 print(wynik2)
-                fina=input("Czas start, podaj hasło: ")
-                while fina!= has2:
-                    fina=input("Zgadduj dalej: ")
+
+
+
+                print("Czas start")
+                fina=" "
+                czas_thread = threading.Thread(None, czas)
+                czas_thread.start()
+                while  fina!=has2 and czas_thread.is_alive():
+                    fina = input("Zgadnij hasło")
+
                 if fina==has2:
                     print("Brawo Wygrałeś")
                     print("Zobaczmy co jest w kopercie...")
+                    time.sleep(3)
                     n=finalowe()
                     print(n)
                     if n == "Samochód":
