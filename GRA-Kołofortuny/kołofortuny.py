@@ -4,7 +4,7 @@ global wynik
 global kasa
 global życia
 kasa=0
-życia=10
+życia=1
 wynik=[]
 
 

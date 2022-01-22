@@ -1,5 +1,7 @@
 import random
 import csv
+import sys
+
 samogłoski=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż']
 spółgłoski=['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 alfabet=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż','a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
@@ -77,6 +79,7 @@ def ngro(nagroda,życia):
     if nagroda == "BANKRUT!!!":
         życia -= 1
         print("Na szczęście nie jest to prawdziwe koło fortuny i nie tracisz całej kasy tylko tracisz 1 życie zostało ci ",życia)
+
     elif nagroda == "Nagroda":
         n = nagrody()
         print("Jeśli zgadniesz litera dostaniesz: ", n)
@@ -114,6 +117,7 @@ def finalowe():
 def bankrut(nagroda,życia):
     while nagroda=="BANKRUT!!!":
         życia = życia - 1
+        życia2(życia)
         print("Wylosowałeś bankruta, zostalo ci", życia,"żyć ")
         k = input("Zakreć kołem jeszcze raz: ")
         kolo2(k)
@@ -123,6 +127,11 @@ def bankrut(nagroda,życia):
 def kolo2(k):
     while k != "kolo":
         k = input("Napisałeś źle kolo")
+
+def życia2(życia):
+    if życia == 0 :
+        print("Pzegrałeś, skończyły ci się życia - wygraleś: ")
+        sys.exit(0)
 
 def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
     sp = 0
@@ -156,7 +165,9 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                     nagroda=bankrut(nagroda,życia)
                 if ile==0 and sp !=sp2:
                     życia-=1
+                    życia2(życia)
                     print("Nie ma takiej literki lub już ją podałeś, tracisz jedno życie zostało ci: ",życia, " zakreć kołem jeszcze raz, aby grać dalej")
+
                     print(wynik)
                     k = input("Napisz 'kolo' aby zakręcisz kołem")
                     kolo2(k)
