@@ -1,4 +1,6 @@
 import random
+import time
+import datetime
 import csv
 import sys
 
@@ -72,6 +74,7 @@ def kasowanie(nagroda,wynik,kasa):
 def krecenie(życia):
     nagroda = kolo()
     print("wylosowałeś: ", nagroda)
+
     nagroda=ngro(nagroda,życia)
     return nagroda
 
@@ -114,10 +117,10 @@ def finalowe():
         if i == x:
             return nagrod[i]
 
-def bankrut(nagroda,życia):
+def bankrut(nagroda,życia,kasa,has):
     while nagroda=="BANKRUT!!!":
         życia = życia - 1
-        życia2(życia)
+        życia2(życia,kasa,has)
         print("Wylosowałeś bankruta, zostalo ci", życia,"żyć ")
         k = input("Zakreć kołem jeszcze raz: ")
         kolo2(k)
@@ -128,9 +131,10 @@ def kolo2(k):
     while k != "kolo":
         k = input("Napisałeś źle kolo")
 
-def życia2(życia):
+def życia2(życia,kasa, has):
     if życia == 0 :
-        print("Pzegrałeś, skończyły ci się życia - wygraleś: ")
+        print("Pzegrałeś, skończyły ci się życia - wygraleś: ",kasa)
+        print("Hasło to : ",has)
         sys.exit(0)
 
 def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
@@ -153,7 +157,7 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                         sp2+=1
                         ile+=1
                 if ile !=0:
-                    print(nagroda)
+
                     kasa += ile * nagroda
                 if ile !=0 and sp !=sp2:
                     print("Brawo Zgadłeś zgarnałeś: ", ile*nagroda,  "  aktualny stan twojej wygranej: ", kasa)
@@ -161,19 +165,37 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                     k = input("Napisz 'kolo' aby zakręcisz kołem")
                     kolo2(k)
                     nagroda=krecenie(życia)
-                    bankrut(nagroda, życia)
-                    nagroda=bankrut(nagroda,życia)
+                    bankrut(nagroda, życia,kasa,has)
+                    nagroda=bankrut(nagroda,życia,kasa,has)
                 if ile==0 and sp !=sp2:
                     życia-=1
-                    życia2(życia)
+                    życia2(życia,kasa,has)
                     print("Nie ma takiej literki lub już ją podałeś, tracisz jedno życie zostało ci: ",życia, " zakreć kołem jeszcze raz, aby grać dalej")
 
                     print(wynik)
                     k = input("Napisz 'kolo' aby zakręcisz kołem")
                     kolo2(k)
                     nagroda = krecenie(życia)
-                    nagroda=bankrut(nagroda, życia)
+                    nagroda=bankrut(nagroda, życia,kasa,has)
         else:
             print("Prosze o podanie spółgłoski")
             print(wynik)
     return kasa, życia
+
+
+
+
+
+
+def czas():
+    global s
+    s=90
+    while s > 0:
+        if s == 45:
+            print("---Połowa czasu mineła---")
+        time.sleep(1)
+        s-= 1
+    print("Czas się skończył, prosze naciśnij Enter")
+
+
+
