@@ -107,7 +107,7 @@ while start != "Tak" and start != "Nie":
 if start=="Tak":
     print("losowanie hasła.....")
     kategoria=losowanie()
-    has="Ida"
+    has="Idak"
     wynik = odgadywanie(has)
     print("Kategoria hasła to:", kategoria)
     print("Dla ułatwienia wszystkie hasła są z małych liter")
@@ -118,13 +118,14 @@ if start=="Tak":
     bankrut(nagroda,życia)
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
-    czy=odgadywaniehasła(kasa,has,wynik,życia,nagroda)
+    kasa,życia=odgadywaniehasła(kasa,has,wynik,życia,nagroda)
+    print(życia)
 
 
-    if czy==True:
-        print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa)
+    if True:
+        print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa,życia)
         print("Skończyły się spółgłoski")
-        print("Czas na odggadnięcie hasła")
+        print("Czas na odgadnięcie hasła")
         print("Możesz zgadnąć lub kupić samogłoske za 200")
         k = input("napisz kup lub haslo")
         while k != "kup" and k != "haslo":
