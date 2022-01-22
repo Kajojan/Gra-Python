@@ -92,7 +92,7 @@ if start=="Tak":
                 time.sleep(2)
                 print("Bedziesz musiał w czasie 1,5 minuty odgadnać hasło")
                 time.sleep(2)
-                k=input("Najpierw zakręćmy kołem finałowym")
+                k=input("Najpierw zakręćmy kołem finałowym: ")
                 kolo2(k)
                 print("Wylosowałeś koperte, jak odgadniesz hasło zobaczysz co jest w srodku")
                 time.sleep(2)
@@ -144,6 +144,7 @@ if start=="Tak":
                     fina = input("Zgadnij hasło")
 
                 if fina==has2:
+                    czas_thread.daemon
                     print("Brawo Wygrałeś")
                     print("Zobaczmy co jest w kopercie...")
                     time.sleep(3)
