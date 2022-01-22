@@ -85,7 +85,7 @@ def ngro(nagroda,życia):
 
     elif nagroda == "Nagroda":
         n = nagrody()
-        print("Jeśli zgadniesz litera dostaniesz: ", n)
+        print("Jeśli zgadniesz literę dostaniesz: ", n)
         nagroda=0
     elif nagroda == "500?":
         print("masz dwie opcje: 1.zostajesz przy 500  czy 2.odsłaniasz karte i ryzykujesz 50/50 3500 albo bankrut")
