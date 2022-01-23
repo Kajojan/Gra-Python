@@ -26,9 +26,7 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-        if event.type == pygame.:
-            ms("Koniec", (255,255,255))
-            pygame.display.update()
+
 
 
 pygame.quit()

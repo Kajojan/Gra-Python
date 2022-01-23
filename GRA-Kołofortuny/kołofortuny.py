@@ -11,7 +11,7 @@ wynik=[]
 
 
 
-
+tablica_wyników()
 
 print("Witamy w kole fortuny!!!")
 print("Przedstawmy naszego gościa")
@@ -152,7 +152,8 @@ if start=="Tak":
                     if n == "Samochód":
                         print("Gratulujemy wygranej", kasa, "+ Nowego samochodu")
                     else:
-                        print("Gratulujemy wygranej: ", kasa+n)
+                        kasa+=n
+                        print("Gratulujemy wygranej: ", kasa)
                 else:
                     print("Czasami się wygrywa czasami przegrywa, zobaczmy co jest w kopercie")
                     n=finalowe()
@@ -161,6 +162,7 @@ if start=="Tak":
                         print("Kurcze szkoda takiej fury, ale no cóż i tak wygrałeś: ", kasa)
                     else:
                         print("Mówi się trudno, może nastepnym razem, ale i tak wygrałeś: ", kasa)
+                zapisywanie(imie,kasa)
 
 
 elif start=="Nie":

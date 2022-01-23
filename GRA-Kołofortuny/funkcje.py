@@ -71,6 +71,9 @@ def kasowanie(nagroda,wynik,kasa):
                 kasa=kasa+(ile*nagroda)
     return kasa
 
+
+
+
 def krecenie(życia):
     nagroda = kolo()
     print("wylosowałeś: ", nagroda)
@@ -197,5 +200,13 @@ def czas():
         s-= 1
     print("Czas się skończył, prosze naciśnij Enter")
 
-
+def zapisywanie(imie,kasa):
+    file = open("wyniki.csv", "a")
+    file.write(imie,kasa,"\n")
+    file.close()
+def tablica_wyników():
+    fle=open("wyniki.csv", "r")
+    for i in fle:
+        if i == "maciek":
+            print(i)
 
