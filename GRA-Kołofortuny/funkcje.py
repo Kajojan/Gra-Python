@@ -129,10 +129,10 @@ def finalowe():
 
 
 
-def bankrut(nagroda,życia,kasa,has):
+def bankrut(nagroda,życia,kasa,has,imie):
     while nagroda=="BANKRUT!!!":
         życia = życia - 1
-        życia2(życia,kasa,has)
+        życia2(życia,kasa,has,imie)
         print("Wylosowałeś bankruta, zostalo ci", życia,"żyć ")
         k = input("Zakreć kołem jeszcze raz: ")
         kolo2(k)
@@ -148,7 +148,7 @@ def kolo2(k):
 
 
 
-def życia2(życia,kasa, has):
+def życia2(życia,kasa, has,imie):
     if życia == 0 :
         print("Pzegrałeś, skończyły ci się życia - wygraleś: ",kasa)
         print("Hasło to : ",has)
@@ -162,7 +162,7 @@ def życia2(życia,kasa, has):
             time.sleep(1)
         sys.exit(0)
 
-def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
+def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria,imie):
     sp = 0
     sp2 = 0
     for i in has:
@@ -191,18 +191,18 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
                     k = input("Napisz 'kolo' aby zakręcisz kołem ")
                     kolo2(k)
                     nagroda=krecenie(życia)
-                    bankrut(nagroda, życia,kasa,has)
-                    nagroda=bankrut(nagroda,życia,kasa,has)
+                    bankrut(nagroda, życia,kasa,has,imie)
+                    nagroda=bankrut(nagroda,życia,kasa,has,imie)
                 if ile==0 and sp !=sp2:
                     życia-=1
-                    życia2(życia,kasa,has)
+                    życia2(życia,kasa,has,imie)
                     print("Nie ma takiej literki lub już ją podałeś, tracisz jedno życie zostało ci: ",życia, " zakreć kołem jeszcze raz, aby grać dalej")
 
                     print(wynik)
                     k = input("Napisz 'kolo' aby zakręcisz kołem ")
                     kolo2(k)
                     nagroda = krecenie(życia)
-                    nagroda=bankrut(nagroda, życia,kasa,has)
+                    nagroda=bankrut(nagroda, życia,kasa,has,imie)
         else:
             if sp != sp2:
                 print("Prosze o podanie spółgłoski ")

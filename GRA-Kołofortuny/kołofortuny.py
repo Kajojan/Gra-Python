@@ -36,10 +36,10 @@ if start=="Tak":
     k=input("napisz 'kolo' aby zakręcisz kołem ")
     kolo2(k)
     nagroda=krecenie(życia)
-    nagroda=bankrut(nagroda,życia,kasa,has)
+    nagroda=bankrut(nagroda,życia,kasa,has,imie)
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
-    kasa,życia=odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria)
+    kasa,życia=odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria,imie)
     if True:
         print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa)
         time.sleep(1)
