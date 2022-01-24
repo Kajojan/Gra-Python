@@ -156,6 +156,7 @@ def życia2(życia,kasa, has):
         lista2 = dodawanie(lista, imie, str(kasa))
         sort(lista2)
         tablica_wyników(lista2)
+        time.sleep(10)
         sys.exit(0)
 
 
