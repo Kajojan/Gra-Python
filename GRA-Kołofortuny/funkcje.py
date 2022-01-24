@@ -3,13 +3,13 @@ import time
 import datetime
 import csv
 import sys
-
+import threading
 samogłoski=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż']
 spółgłoski=['a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 alfabet=['b', 'c', 'ć', 'd', 'f','h', 'g', 'j', 'k', 'l', 'ł', 'm', 'n', 'ń', 'p', 'r', 's', 'ś', 't', 'w', 'z', 'ź', 'ż','a', 'ą', 'e', 'ę', 'i', 'o', 'u', 'y', 'ó']
 
 def kolo():
-    kolo1={1:100, 2:200, 3:250, 4:400, 5:500, 6:550, 7:1000, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!", 11:3000, 12:800, 13:50, 14:100, 15:200, 16:100, 17:200, 18:1000, 19:100, 20:2000}
+    kolo1={1:100, 2:200, 3:200, 4:150, 5:300, 6:50, 7:10, 8:"500?", 9:"Nagroda", 10:"BANKRUT!!!", 11:100, 12:"BANKRUT!!!", 13:1200, 14:100, 15:200, 16:100, 17:200, 18:1000, 19:100, 20:400}
     x = random.randrange(1,21)
     for i in kolo1.keys():
         if i == x:
@@ -22,7 +22,7 @@ def znacznik():
     return znacznik
 
 def losowanie():
-    kategorie=["Znani Polscy Aktorzy", "Filmy", "Seriale", "Polskie przysłowia", "Państwa"]
+    kategorie=("Znani Polscy Aktorzy", "Filmy", "Seriale", "Polskie przysłowia", "Państwa")
     x = random.choice(kategorie)
     return x
 
@@ -45,7 +45,7 @@ def nagrody():
 def odslanianie():
     x=random.randrange(1,3)
     if x==1:
-        return 3500
+        return 1300
     else:
         return "BANKRUT!!!"
 
@@ -78,8 +78,8 @@ def krecenie(życia):
     nagroda = kolo()
     print("wylosowałeś: ", nagroda)
 
-    nagroda=ngro(nagroda,życia)
-    return nagroda
+    nagroda2=ngro(nagroda,życia)
+    return nagroda2
 
 def ngro(nagroda,życia):
     if nagroda == "BANKRUT!!!":
@@ -91,7 +91,7 @@ def ngro(nagroda,życia):
         print("Jeśli zgadniesz literę dostaniesz: ", n)
         nagroda=0
     elif nagroda == "500?":
-        print("masz dwie opcje: 1.zostajesz przy 500  czy 2.odsłaniasz karte i ryzykujesz 50/50 3500 albo bankrut")
+        print("masz dwie opcje: 1.zostajesz przy 500  czy 2.odsłaniasz karte i ryzykujesz 50/50 1300 albo bankrut")
         wybor = input("1 czy 2 ?")
         if wybor == "1":
             nagroda = 500
@@ -114,7 +114,7 @@ def czy_sa(litera):
 
 
 def finalowe():
-    nagrod={1:10000, 2:20000, 3:5000, 4:"Samochód", 5:1000, 6:3000, 7:2500, 8:1500}
+    nagrod={1:1000, 2:2000, 3:1050, 4:"Samochód", 5:1000, 6:3000, 7:2500, 8:1500}
     x = random.randrange(1, 9)
     for i in nagrod.keys():
         if i == x:
@@ -128,6 +128,7 @@ def bankrut(nagroda,życia,kasa,has):
         k = input("Zakreć kołem jeszcze raz: ")
         kolo2(k)
         nagroda = krecenie(życia)
+
     return nagroda
 
 def kolo2(k):
@@ -140,7 +141,7 @@ def życia2(życia,kasa, has):
         print("Hasło to : ",has)
         sys.exit(0)
 
-def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
+def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
     sp = 0
     sp2 = 0
     for i in has:
@@ -149,7 +150,8 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                 sp += 1
     while sp !=sp2:
         ile=0
-        litera=input("Podaj spółgłoskę")
+        print("Dla przypomnenia kategora hasła:", kategoria)
+        litera=input("Podaj spółgłoskę ")
         for j in samogłoski:
             if j == litera:
                 for i in range(0, len(has)):
@@ -181,8 +183,9 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
                     nagroda = krecenie(życia)
                     nagroda=bankrut(nagroda, życia,kasa,has)
         else:
-            print("Prosze o podanie spółgłoski")
-            print(wynik)
+            if sp != sp2:
+                print("Prosze o podanie spółgłoski")
+                print(wynik)
     return kasa, życia
 
 
@@ -193,20 +196,66 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda):
 def czas():
     global s
     s=90
-    while s > 0:
-        if s == 45:
-            print("---Połowa czasu mineła---")
-        time.sleep(1)
-        s-= 1
-    print("Czas się skończył, prosze naciśnij Enter")
+    t = threading.currentThread()
+    while getattr(t, "do_run", True):
+        while s > 0:
+            if s == 45:
+                print("---Połowa czasu mineła---")
+            time.sleep(1)
+            s-= 1
+        print("Czas się skończył, prosze naciśnij Enter")
 
-def zapisywanie(imie,kasa):
-    file = open("wyniki.csv", "a")
-    file.write(imie,kasa,"\n")
-    file.close()
-def tablica_wyników():
-    fle=open("wyniki.csv", "r")
-    for i in fle:
-        if i == "maciek":
-            print(i)
+def dodawanie(lista,imie,kasa):
+   d={'miejsce':len(lista)+1, 'imie':imie, 'wynik':kasa}
+   lista.append(d)
+
+   return lista
+
+
+def zapisywanie():
+    lista = []
+    with open('wyniki.csv', 'r', encoding='utf-8-sig') as csvfile:
+        csvreader = csv.DictReader(csvfile,delimiter=';')
+        for row in csvreader:
+            lista.append(row)
+
+        return (lista)
+
+
+def sort(lista):
+    n = len(lista)
+
+    sorted_list = lista
+    i = 0
+
+    while i < n:
+        k = 0
+
+        while k < n - 1:
+            if sorted_list[k]['wynik'] < sorted_list[k + 1]['wynik']:
+                p = sorted_list[k]['wynik']
+                p2 = sorted_list[k]['imie']
+                sorted_list[k]['wynik'] = sorted_list[k + 1]['wynik']
+                sorted_list[k]['imie'] = sorted_list[k + 1]['imie']
+                sorted_list[k + 1]['wynik'] = p
+                sorted_list[k + 1]['imie'] = p2
+
+            k += 1
+        i += 1
+    return sorted_list
+
+
+def tablica_wyników(lista):
+        with open('wyniki.csv', 'w') as csvfile:
+            csvw = csv.writer(csvfile,delimiter=';')
+            csvw.writerow(['miejsce', 'imie', 'wynik'])
+            for i in range(0,len(lista)):
+                csvw.writerow([lista[i]['miejsce'],lista[i]['imie'],lista[i]['wynik']])
+            k=0
+            print("Najlepszych 5 graczy:")
+            for row in lista:
+                if k == 5:
+                    break
+                print(row['miejsce'], row['imie'], row['wynik'])
+                k+=1
 
