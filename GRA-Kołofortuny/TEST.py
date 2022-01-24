@@ -1,6 +1,7 @@
 import sys
 
 from funkcje import *
+
 def test_czy_sp():
     a="a"
     b="b"

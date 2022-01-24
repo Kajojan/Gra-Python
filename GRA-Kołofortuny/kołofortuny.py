@@ -8,11 +8,6 @@ global życia
 kasa=0
 życia=10
 wynik=[]
-
-
-
-
-
 print("Witamy w kole fortuny!!!")
 print("Przedstawmy naszego gościa")
 imie=input("Jak sie nazywasz?")
@@ -30,12 +25,11 @@ print("Zaczynamy")
 start=input("Tak czy Nie ? ")
 while start != "Tak" and start != "Nie":
     start=input("Widać, ze nie czytałeś tego co napisalem. Napisz uwzdlędniajac wielkie litery: ")
-
 if start=="Tak":
     print("losowanie hasła.....")
     time.sleep(2)
     kategoria=losowanie()
-    has="ida"  #haslo(kategoria)
+    has=haslo(kategoria)
     wynik = odgadywanie(has)
     print("Kategoria hasła to:", kategoria)
     print("Dla ułatwienia wszystkie hasła są z małych liter")
@@ -46,9 +40,6 @@ if start=="Tak":
     print("Wylosowałeś nagrode to czas na odgadywanie o to zaczyfrowane haslo")
     print(wynik)
     kasa,życia=odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria)
-
-
-
     if True:
         print("Brawo Zgadłeś, aktualny stan twojej wygranej: ", kasa)
         time.sleep(1)
@@ -83,7 +74,6 @@ if start=="Tak":
         if k=="haslo":
             print("Masz jedną próbę , także odpowiedz bardzo szczegółowo")
             hasl=input("odpowiedź: ")
-
             if hasl==has:
                 print("Brawo udało ci się odganąć hasło")
                 time.sleep(2)
@@ -132,16 +122,12 @@ if start=="Tak":
                     if has2[i] == "i":
                         wynik2[i] = "i"
                 print(wynik2)
-
-
-
                 print("Czas start")
                 fina=" "
                 czas_thread = threading.Thread(target=czas)
                 czas_thread.start()
                 while  fina!=has2 and czas_thread.is_alive():
                     fina = input("Zgadnij hasło: ")
-
                 if fina==has2:
                     czas_thread.daemon
                     czas_thread.do_run=False
@@ -167,8 +153,6 @@ if start=="Tak":
                 lista2=dodawanie(lista,imie,str(kasa))
                 sort(lista2)
                 tablica_wyników(lista2)
-
-
 elif start=="Nie":
     print("Do widzenia")
 

@@ -15,16 +15,14 @@ def kolo():
         if i == x:
             return kolo1[i]
 
-def znacznik():
-    znacznik=[]
-    for i in range(0,3):
-        znacznik.append(kolo())
-    return znacznik
+
 
 def losowanie():
     kategorie=("Znani Polscy Aktorzy", "Filmy", "Seriale", "Polskie przysłowia", "Państwa")
     x = random.choice(kategorie)
     return x
+
+
 
 def haslo(x):
     with open('kategorie.csv', encoding='utf-8') as csvfile:
@@ -35,6 +33,7 @@ def haslo(x):
                 haslo=row[k]
                 return(haslo)
 
+
 def nagrody():
     nagro={1:"Garnki kuchenne", 2:"Wyjazd na Mazury", 3:"Zestaw porcelany", 4:"Zestaw zegarków", 5:"Wyjazd na Malediwy", 6:"Piątke od prowadzącego"}
     x = random.randrange(1,7)
@@ -42,12 +41,14 @@ def nagrody():
         if i == x:
             return nagro[i]
 
+
 def odslanianie():
     x=random.randrange(1,3)
     if x==1:
         return 1300
     else:
         return "BANKRUT!!!"
+
 
 def odgadywanie(has):
     odp=[]
@@ -60,6 +61,8 @@ def odgadywanie(has):
             elif odp[i]==" ":
                 odp[i]="    "
     return odp
+
+
 
 def kasowanie(nagroda,wynik,kasa):
     ile=0
@@ -80,6 +83,8 @@ def krecenie(życia):
 
     nagroda2=ngro(nagroda,życia)
     return nagroda2
+
+
 
 def ngro(nagroda,życia):
     if nagroda == "BANKRUT!!!":
@@ -102,6 +107,8 @@ def ngro(nagroda,życia):
             nagroda=druga
     return nagroda
 
+
+
 def czy_sp(litera):
     for i in samogłoski:
         if i == litera:
@@ -120,6 +127,8 @@ def finalowe():
         if i == x:
             return nagrod[i]
 
+
+
 def bankrut(nagroda,życia,kasa,has):
     while nagroda=="BANKRUT!!!":
         życia = życia - 1
@@ -131,15 +140,24 @@ def bankrut(nagroda,życia,kasa,has):
 
     return nagroda
 
+
+
 def kolo2(k):
     while k != "kolo":
         k = input("Napisałeś źle kolo")
+
+
 
 def życia2(życia,kasa, has):
     if życia == 0 :
         print("Pzegrałeś, skończyły ci się życia - wygraleś: ",kasa)
         print("Hasło to : ",has)
+        lista = zapisywanie()
+        lista2 = dodawanie(lista, imie, str(kasa))
+        sort(lista2)
+        tablica_wyników(lista2)
         sys.exit(0)
+
 
 def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
     sp = 0
@@ -167,7 +185,7 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
                 if ile !=0 and sp !=sp2:
                     print("Brawo Zgadłeś zgarnałeś: ", ile*nagroda,  "  aktualny stan twojej wygranej: ", kasa)
                     print(wynik)
-                    k = input("Napisz 'kolo' aby zakręcisz kołem")
+                    k = input("Napisz 'kolo' aby zakręcisz kołem ")
                     kolo2(k)
                     nagroda=krecenie(życia)
                     bankrut(nagroda, życia,kasa,has)
@@ -178,13 +196,13 @@ def odgadywaniehasła(kasa,has,wynik,życia,nagroda,kategoria):
                     print("Nie ma takiej literki lub już ją podałeś, tracisz jedno życie zostało ci: ",życia, " zakreć kołem jeszcze raz, aby grać dalej")
 
                     print(wynik)
-                    k = input("Napisz 'kolo' aby zakręcisz kołem")
+                    k = input("Napisz 'kolo' aby zakręcisz kołem ")
                     kolo2(k)
                     nagroda = krecenie(życia)
                     nagroda=bankrut(nagroda, życia,kasa,has)
         else:
             if sp != sp2:
-                print("Prosze o podanie spółgłoski")
+                print("Prosze o podanie spółgłoski ")
                 print(wynik)
     return kasa, życia
 
@@ -205,11 +223,14 @@ def czas():
             s-= 1
         print("Czas się skończył, prosze naciśnij Enter")
 
+
+
 def dodawanie(lista,imie,kasa):
    d={'miejsce':len(lista)+1, 'imie':imie, 'wynik':kasa}
    lista.append(d)
 
    return lista
+
 
 
 def zapisywanie():
@@ -220,6 +241,7 @@ def zapisywanie():
             lista.append(row)
 
         return (lista)
+
 
 
 def sort(lista):
@@ -243,6 +265,7 @@ def sort(lista):
             k += 1
         i += 1
     return sorted_list
+
 
 
 def tablica_wyników(lista):
